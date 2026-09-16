@@ -1,4 +1,5 @@
 import { useState } from 'react'
+<<<<<<< HEAD
 import heroImg from './assets/hero.png'
 import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
@@ -115,8 +116,33 @@ function App() {
 
       <div className="ticks"></div>
       <section id="spacer"></section>
+=======
+import React from "react";
+import {BrowserRouter as Router, Route, Routes} from "react-router-dom"
+import './App.css'
+
+function App() {
+
+  return (
+    <>
+    
+    
+    
+    <Router>
+      <Routes>
+        <Route path= "/" element={<Inicio/>}/>
+        <Route path= "*" element= {<NoEncontrada/>}/> {/*Ruta Comodin utiliza el *(asteriscto) */}
+      </Routes>
+    </Router>
+>>>>>>> master
     </>
   )
 }
 
 export default App
+<<<<<<< HEAD
+=======
+/*Create "wildcard" path */
+/*3:45*/
+/*a*/
+>>>>>>> master
