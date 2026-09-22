@@ -1,5 +1,7 @@
 import React from "react";
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom"
+import Inicio from "./pages/InicioPagina"
+import NoEncontrada from "./pages/NoEncontrada"
 import './App.css'
 
 function App() {
@@ -22,5 +24,5 @@ function App() {
 export default App
 /*Create "wildcard" path */
 /*3:45*/
-/*abcc*/
+/*abc*/ 
 
