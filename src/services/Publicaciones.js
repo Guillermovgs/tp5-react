@@ -1,23 +1,52 @@
 import { supabase } from "../supabaseClient";
 
-
 export async function obtenerPublicacion() {
-    return supabase.from("publicaciones")
-    .select("id, titulo,contenido,creado_en")
-    .order("creado_en",{ascending:false});
-}
-
-export async function crearPublicacion({titulo, contenido}) {
-    return supabase.from("publicaciones")
-    .insert({titulo,contenido});
-}
-
-export async function actualizarPublicacion (id, cambios) {
-    return supabase.from("publicaciones")
-    .update(cambios).eq("id", id);
-}
-export async function borrarPublicacion (id) {
-    return supabase.from("publicaciones")
-    .delete(id).eq("id", id)
+  const { data, error } = await supabase
+    .from("publicaciones")
+    .select("*")
+    .order("creado_en", { ascending: false }); 
     
+  if (error) throw error;
+  return data; 
+}
+export async function obtenerPublicacionPorId(id) {
+  const { data, error } = await supabase
+    .from("publicaciones")
+    .select("*")
+    .eq("id", id)
+    .single();
+
+  if (error) throw error;
+  return data;
+}
+
+export async function crearPublicacion(titulo, contenido) {
+  const { data, error } = await supabase
+    .from("publicaciones")
+    .insert({ titulo, contenido })
+    .select(); 
+    
+  if (error) throw error;
+  return data;
+}
+
+export async function actualizarPublicacion(id, cambios) {
+  const { data, error } = await supabase
+    .from("publicaciones")
+    .update(cambios)
+    .eq("id", id)
+    .select();
+    
+  if (error) throw error;
+  return data;
+}
+export async function borrarPublicacion(id) {
+  const { data, error } = await supabase
+    .from("publicaciones")
+    .delete()
+    .eq("id", id)
+    .select();
+    
+  if (error) throw error;
+  return data;
 }

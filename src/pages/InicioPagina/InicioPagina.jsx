@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { obtenerPublicacion } from "../services/Publicaciones";
-import ItemPublicacion from "../components/ItemPublicacion";
+import { obtenerPublicacion } from "../../services/Publicaciones";
+import CardPublicacion from "../../components/CardPublicacion/CardPublicacion";
+import styles from "./InicioPagina.module.css";
 
 export default function Publicacion() {
     const [lista, setLista]= useState([]);
@@ -13,7 +14,7 @@ export default function Publicacion() {
             try {
                 setCargando(true);
                 const datos= await obtenerPublicacion();
-                setLista(datos || []);
+                setLista(Array.isArray(datos) ? datos : []);
 
             } catch (err) {
             console.error ("Error al cargar publicaciones:", err);
@@ -26,26 +27,28 @@ export default function Publicacion() {
         
     }, []);
 
-    if (cargando) return <div className="loading">Cargando...</div>
+    if (cargando) return <div className={styles.loading}>Cargando...</div>
     if (error) return (
-        <div className="mensaje-error">
+        <div className={styles.mensajeError}>
             <p>{error}</p>
-            <button onClick={() => window.location.reload()} className="reintentar">Reintentar</button>
+            <button onClick={() => window.location.reload()} className={styles.reintentar}>Reintentar</button>
         </div>
     );
-
+console.log(styles)
 return (
-    <div className="contenedor-publicacion">
-        <div className="header-seccion">
-            <Link to="/nueva" className="crear">Nueva Publicacion</Link>
+    <div className={styles.contenedorPublicacion}>
+        <div className={styles.headerSeccion}>
+            <Link to="/nueva" className={styles.crear}>Nueva Publicacion</Link>
             <h1>Publicaciones</h1>
         </div>
         {lista.length ===0 ? (
-            <p className="lista vacia"> Todavia no hay publicaciones</p>
+            <p className={styles.listaVacia}> Todavia no hay publicaciones</p>
         ):(
-            <div className="listado-publicaciones">
+            <div className={styles.listadoPublicaciones}>
                 {lista.map((publ) =>(
-                    <ItemPublicacion key={publ.id} publicacion={publ}/>
+                    <CardPublicacion key={publ.id} publicacion={publ} onEliminar={(idBorrado) => {
+                        setLista(lista.filter((pub) => pub.id !== idBorrado));
+                    }}/>
                 ))}
             </div>
         )}
@@ -53,6 +56,3 @@ return (
 )
 
 }
-
-
-    

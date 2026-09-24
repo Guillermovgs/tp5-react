@@ -1,7 +1,8 @@
-import React from "react";
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom"
-import Inicio from "./pages/InicioPagina"
-import NoEncontrada from "./pages/NoEncontrada"
+import Inicio from "./pages/InicioPagina/InicioPagina"
+import NoEncontrada from "./pages/NoEncontrada/NoEncontrada"
+import FormularioPublicacion from "./pages/Formulario/FormularioPublicacion";
+
 import './App.css'
 
 function App() {
@@ -11,12 +12,12 @@ function App() {
     
     
     
-    <Router>
       <Routes>
         <Route path= "/" element={<Inicio/>}/>
+        <Route path= "/nueva" element={<FormularioPublicacion/>}/>
+        <Route path= "/editar/:id" element={<FormularioPublicacion/>}/>
         <Route path= "*" element= {<NoEncontrada/>}/> {/*Ruta Comodin utiliza el *(asteriscto) */}
       </Routes>
-    </Router>
     </>
   )
 }

@@ -1,0 +1,96 @@
+.contenedorForm {
+  max-width: 600px;
+  margin: 60px auto;
+  padding: 30px;
+  background-color: var(--color-white);
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(136, 13, 30, 0.08); 
+  border: 1px solid var(--color-light-pink);
+}
+
+.contenedorForm h1 {
+  color: var(--color-primary-dark);
+  margin-top: 0;
+  margin-bottom: 25px;
+  font-size: 1.8rem;
+  text-align: center;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.campo label {
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--color-primary-dark);
+}
+
+.campo input,
+.campo textarea {
+  padding: 12px;
+  border: 2px solid var(--color-light-pink);
+  border-radius: 8px;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.campo input:focus,
+.campo textarea:focus {
+  border-color: var(--color-primary);
+}
+
+.errorValidacion {
+  color: var(--color-primary);
+  font-size: 0.85rem;
+  margin-top: 5px;
+  font-weight: 500;
+}
+
+.botones {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+  margin-top: 25px;
+}
+
+.btnCancelar {
+  background-color: transparent;
+  color: var(--color-secondary);
+  border: 2px solid var(--color-secondary);
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.2s ease;
+}
+
+.btnCancelar:hover {
+  background-color: var(--color-light-pink);
+  color: var(--color-primary-dark);
+  border-color: var(--color-light-pink);
+}
+
+.btnGuardar {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  border: none;
+  padding: 10px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s ease;
+}
+
+.btnGuardar:hover {
+  background-color: var(--color-primary-dark);
+}
+
+.btnGuardar:disabled,
+.btnCancelar:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
